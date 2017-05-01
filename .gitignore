@@ -4,6 +4,7 @@ modules/contrib
 modules/nucivic
 themes/contrib
 webroot
+vendor
 test/vendor
 test/bin
 test/assets
@@ -12,8 +13,10 @@ test/dkan
 test/local.yml
 assets/*
 .idea
+*.iml
 behat.local.yml
 npm-debug.log
 .sublime-workspace
 docs/_build
 *.orig
+composer.lock

@@ -419,7 +419,74 @@ function dkan_delete_markdown_buttons(&$context) {
  */
 function dkan_group_link_delete(&$context) {
   $context['message'] = t('Removing og_extra groups link');
-  db_query('DELETE FROM {menu_links} WHERE link_path = :link_path LIMIT 1', array(':link_path' => 'groups'));
+/**
+* @todo - FIX ME...
+```
+$ drush site-install dkan --db-url="pgsql://dkan:odpvta2017@localhost/dkan_odp" --notify | tee dkan_pgsql.log
+You are about to DROP all tables in your 'dkan_odp' database. Do you want to continue? (y/n): y
+Starting Drupal installation. This takes a while.                                                                                                                     [ok]
+Processed 3 (3 created, 0 updated, 0 failed, 0 ignored) in 0.9 sec (206/min) - done with 'dkan_default_content_groups'                                                [completed]
+Processed 18 (18 created, 0 updated, 0 failed, 0 ignored) in 3.6 sec (297/min) - done with 'dkan_default_content_resources'                                           [completed]
+Creating default object from empty value                                                                                                                              [error]
+File /home/linuxwebexpert/SCVTA/dkan/webroot/profiles/dkan/modules/dkan/dkan_fixtures/includes/dataset.inc, line 103
+Creating default object from empty value                                                                                                                              [error]
+File /home/linuxwebexpert/SCVTA/dkan/webroot/profiles/dkan/modules/dkan/dkan_fixtures/includes/dataset.inc, line 103
+Creating default object from empty value                                                                                                                              [error]
+File /home/linuxwebexpert/SCVTA/dkan/webroot/profiles/dkan/modules/dkan/dkan_fixtures/includes/dataset.inc, line 103
+Creating default object from empty value                                                                                                                              [error]
+File /home/linuxwebexpert/SCVTA/dkan/webroot/profiles/dkan/modules/dkan/dkan_fixtures/includes/dataset.inc, line 103
+Creating default object from empty value                                                                                                                              [error]
+File /home/linuxwebexpert/SCVTA/dkan/webroot/profiles/dkan/modules/dkan/dkan_fixtures/includes/dataset.inc, line 103
+Creating default object from empty value                                                                                                                              [error]
+File /home/linuxwebexpert/SCVTA/dkan/webroot/profiles/dkan/modules/dkan/dkan_fixtures/includes/dataset.inc, line 103
+Creating default object from empty value                                                                                                                              [error]
+File /home/linuxwebexpert/SCVTA/dkan/webroot/profiles/dkan/modules/dkan/dkan_fixtures/includes/dataset.inc, line 103
+Creating default object from empty value                                                                                                                              [error]
+File /home/linuxwebexpert/SCVTA/dkan/webroot/profiles/dkan/modules/dkan/dkan_fixtures/includes/dataset.inc, line 103
+Creating default object from empty value                                                                                                                              [error]
+File /home/linuxwebexpert/SCVTA/dkan/webroot/profiles/dkan/modules/dkan/dkan_fixtures/includes/dataset.inc, line 103
+Creating default object from empty value                                                                                                                              [error]
+File /home/linuxwebexpert/SCVTA/dkan/webroot/profiles/dkan/modules/dkan/dkan_fixtures/includes/dataset.inc, line 103
+Processed 10 (0 created, 0 updated, 10 failed, 0 ignored) in 38.1 sec (16/min) - done with 'dkan_default_content_datasets'                                            [completed]
+Processed 18 (18 created, 0 updated, 0 failed, 0 ignored) in 1.2 sec (929/min) - done with 'dkan_default_content_visualization_entities'                              [completed]
+Processed 4 (4 created, 0 updated, 0 failed, 0 ignored) in 5.4 sec (44/min) - done with 'dkan_default_content_data_stories'                                           [completed]
+Processed 3 (3 created, 0 updated, 0 failed, 0 ignored) in 1.2 sec (151/min) - done with 'dkan_default_content_data_dashboards'                                       [completed]
+Processed 2 (2 created, 0 updated, 0 failed, 0 ignored) in 0.5 sec (252/min) - done with 'dkan_default_content_pages'                                                 [completed]
+exception 'PDOException' with message 'SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "LIMIT"                                                       [error]
+LINE 1: DELETE FROM menu_links WHERE link_path = 'groups' LIMIT 1
+                                                          ^' in /home/linuxwebexpert/SCVTA/dkan/webroot/includes/database/database.inc:2227
+Stack trace:
+#0 /home/linuxwebexpert/SCVTA/dkan/webroot/includes/database/database.inc(2227): PDOStatement->execute(Array)
+#1 /home/linuxwebexpert/SCVTA/dkan/webroot/includes/database/pgsql/database.inc(111): DatabaseStatementBase->execute(Array, Array)
+#2 /home/linuxwebexpert/SCVTA/dkan/webroot/includes/database/database.inc(2406): DatabaseConnection_pgsql->query('DELETE FROM {me...', Array, Array)
+#3 /home/linuxwebexpert/SCVTA/dkan/webroot/profiles/dkan/dkan.profile(422): db_query('DELETE FROM {me...', Array)
+#4 [internal function]: dkan_group_link_delete(Array)
+#5 /home/linuxwebexpert/SCVTA/dkan/webroot/includes/batch.inc(284): call_user_func_array('dkan_group_link...', Array)
+#6 /home/linuxwebexpert/SCVTA/dkan/webroot/includes/form.inc(4714): _batch_process()
+#7 /home/linuxwebexpert/SCVTA/dkan/webroot/includes/install.core.inc(444): batch_process('install.php?pro...', 'http://default/...')
+#8 /home/linuxwebexpert/SCVTA/dkan/webroot/includes/install.core.inc(339): install_run_task(Array, Array)
+#9 /home/linuxwebexpert/SCVTA/dkan/webroot/includes/install.core.inc(77): install_run_tasks(Array)
+#10 /home/linuxwebexpert/SCVTA/dkan/vendor/drush/drush/includes/drush.inc(725): install_drupal(Array)
+#11 /home/linuxwebexpert/SCVTA/dkan/vendor/drush/drush/includes/drush.inc(711): drush_call_user_func_array('install_drupal', Array)
+#12 /home/linuxwebexpert/SCVTA/dkan/vendor/drush/drush/commands/core/drupal/site_install_7.inc(86): drush_op('install_drupal', Array)
+#13 /home/linuxwebexpert/SCVTA/dkan/vendor/drush/drush/commands/core/site_install.drush.inc(254): drush_core_site_install_version('dkan', Array)
+#14 [internal function]: drush_core_site_install('dkan')
+#15 /home/linuxwebexpert/SCVTA/dkan/vendor/drush/drush/includes/command.inc(422): call_user_func_array('drush_core_site...', Array)
+#16 /home/linuxwebexpert/SCVTA/dkan/vendor/drush/drush/includes/command.inc(231): _drush_invoke_hooks(Array, Array)
+#17 [internal function]: drush_command('dkan')
+#18 /home/linuxwebexpert/SCVTA/dkan/vendor/drush/drush/includes/command.inc(199): call_user_func_array('drush_command', Array)
+#19 /home/linuxwebexpert/SCVTA/dkan/vendor/drush/drush/lib/Drush/Boot/BaseBoot.php(67): drush_dispatch(Array)
+#20 /home/linuxwebexpert/SCVTA/dkan/vendor/drush/drush/includes/preflight.inc(66): Drush\Boot\BaseBoot->bootstrap_and_dispatch()
+#21 /home/linuxwebexpert/SCVTA/dkan/vendor/drush/drush/drush.php(12): drush_main()
+#22 {main}
+notify-send command failed. Please install it as per http://coderstalk.blogspot.com/2010/02/how-to-install-notify-send-in-ubuntu.html. Or you may specify an alternate[error]
+command to run by specifying --notify-cmd=<my_command>
+```
+*
+**/
+// For now...
+    return true;
+//  db_query('DELETE FROM {menu_links} WHERE link_path = :link_path LIMIT 1', array(':link_path' => 'groups'));
 }
 
 /**
